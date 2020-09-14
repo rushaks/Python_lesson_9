@@ -1,6 +1,7 @@
 import random
 
 class Deck:
+
     # инициализация колоды
     def __init__(self):
         self.__suits = ["\u2660", "\u2665", "\u2663", "\u2666"]
@@ -13,15 +14,18 @@ class Deck:
             for key, values in self.deck.items():
                 key = self.__suits[i] + key
                 self.all_deck[key] = values
+
     # Перемешивание колоды
     def mix_deck(self):
         self._ls_mix_deck = list(self.all_deck)
         random.shuffle(self._ls_mix_deck)
+
     # Раздача карт
     def hand_cards(self):
         self.player_hand = self._ls_mix_deck[-6:]
         self._computer_hand = self._ls_mix_deck[-12:-6]
         del self._ls_mix_deck[-12:]
+
     # Жребий кто ходит первым
     def first_turn(self):
         if random.randint(1, 2) == 1:
@@ -30,6 +34,7 @@ class Deck:
         else:
             print('Ходит Компьютер')
             return 'Ходит Компьютер'
+
     # Игрок ходит
     def turn(self):
         print('Ваши карты:\n{}'.format(self.player_hand))
@@ -61,8 +66,8 @@ class Deck:
 
 if __name__ == '__main__':
     deck_test = Deck()
-    deck_test.mix_deck()
-    deck_test.hand_cards()
+    deck_test.mix_deck() # Перемешиваем колоды
+    deck_test.hand_cards() # Раздаем карты
     turn_start = deck_test.first_turn()
     deck_test.turn()
     deck_test.computer_answer()
